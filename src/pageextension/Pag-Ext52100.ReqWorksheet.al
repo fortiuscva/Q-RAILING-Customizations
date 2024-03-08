@@ -25,6 +25,7 @@ pageextension 52100 "QRL Req. Worksheet" extends "Req. Worksheet"
                 ToolTip = 'Specifies the Item Reorder Point';
                 Caption = 'ReOrder Point';
                 DecimalPlaces = 0 : 5;
+                Editable = false;
             }
             field("QRL ReOrderQty"; ReOrderQty)
             {
@@ -32,12 +33,15 @@ pageextension 52100 "QRL Req. Worksheet" extends "Req. Worksheet"
                 ToolTip = 'Specifes the Item Rorder Qty';
                 Caption = 'Reorder Qty';
                 DecimalPlaces = 0 : 5;
+                Editable = false;
             }
         }
     }
     trigger OnAfterGetRecord()
     begin
         clear(ItemRec);
+        clear(ReOrderPoint);
+        clear(ReOrderQty);
         if ItemRec.Get(Rec."No.") then begin
             ReOrderPoint := ItemRec."Reorder Point";
             ReOrderQty := ItemRec."Reorder Quantity";
